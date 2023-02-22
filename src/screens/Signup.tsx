@@ -5,25 +5,24 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import BComponent from '../component/Button'
 import TextComponent from '../component/TextCpn'
-import { useForm, Controller, SubmitErrorHandler,SubmitHandler} from 'react-hook-form';
-type Props = {}
+import { useForm, Controller, } from 'react-hook-form';
 
 export const Signup = ({ navigation }: any) => {
     const { control, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
-            Name:``,
+            Name: ``,
             Email: '',
-            PNumber:``,
+            PNumber: ``,
             Pass: '',
-            Datee:''
+            Datee: ''
         }
     });
-    const onSubmit = (data:any) => {
+    const onSubmit = (data: any) => {
         console.log(data, "log1")
         navigation.navigate("Login")
-}
+    }
 
-   
+
         ;
     const dataText = {
         title1: "Tạo tài khoản",
@@ -42,9 +41,8 @@ export const Signup = ({ navigation }: any) => {
         <SafeAreaProvider style={styles.Screen} >
             <ScrollView>
                 <View style={{ height: 45, flexDirection: "row", alignItems: "center", justifyContent: 'space-between' }}>
-                    <TouchableOpacity onPress={() => {
-                        navigation.goBack()
-                    }}><Image
+                    <TouchableOpacity onPress={() => { navigation.goBack() }}>
+                        <Image
                             source={require('../../assets/arrow-left.png')}
                             style={{ width: 50, height: 45, marginTop: 10 }}
                         />
@@ -63,7 +61,7 @@ export const Signup = ({ navigation }: any) => {
                     <View style={styles.inputt} >
                         <Image
                             source={require('../../assets/in1.png')} />
-                         <Controller
+                        <Controller
                             control={control}
                             render={({ field: { onChange, onBlur, value } }) => (
                                 <TextInput
@@ -83,7 +81,7 @@ export const Signup = ({ navigation }: any) => {
                     <View style={styles.inputt} >
                         <Image
                             source={require('../../assets/in2.png')} />
-                       <Controller
+                        <Controller
                             control={control}
                             render={({ field: { onChange, onBlur, value } }) => (
                                 <TextInput
@@ -103,7 +101,7 @@ export const Signup = ({ navigation }: any) => {
                     <View style={styles.inputt} >
                         <Image
                             source={require('../../assets/in3.png')} />
-                            <Controller
+                        <Controller
                             control={control}
                             render={({ field: { onChange, onBlur, value } }) => (
                                 <TextInput
@@ -120,12 +118,12 @@ export const Signup = ({ navigation }: any) => {
                         {errors.PNumber && <Text>This is required.</Text>}
 
                     </View>
-                    
+
                     <View style={styles.inputt} >
                         <Image
 
                             source={require('../../assets/in5.png')} />
-                         <Controller
+                        <Controller
                             control={control}
                             render={({ field: { onChange, onBlur, value } }) => (
                                 <TextInput
@@ -145,7 +143,7 @@ export const Signup = ({ navigation }: any) => {
                     <View style={styles.inputt} >
                         <Image
                             source={require('../../assets/in4.png')} />
-                         <Controller
+                        <Controller
                             control={control}
                             render={({ field: { onChange, onBlur, value } }) => (
                                 <TextInput

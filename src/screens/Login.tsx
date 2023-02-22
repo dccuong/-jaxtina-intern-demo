@@ -13,10 +13,10 @@ export const Loginn = ({ navigation }: any) => {
             Pass: ''
         }
     });
-    const onSubmit = (data:any) => {
+    const onSubmit = (data: any) => {
         console.log(data, "Login")
         navigation.navigate("TabScreen")
-}
+    }
 
     const dataText = {
         title2: "The Pioneer in Coaching 4 English Skills",
@@ -34,9 +34,8 @@ export const Loginn = ({ navigation }: any) => {
         <SafeAreaProvider style={styles.Screen} >
             <ScrollView>
                 <View style={{ height: 45, alignItems: "flex-start", }}>
-                    <TouchableOpacity onPress={() => {
-                        navigation.goBack()
-                    }}><Image
+                    <TouchableOpacity onPress={() => { navigation.goBack() }}>
+                        <Image
                             source={require('../../assets/arrow-left.png')}
                             style={{ width: 50, height: 45, marginTop: 10 }}
                         />
@@ -84,7 +83,7 @@ export const Loginn = ({ navigation }: any) => {
                             }}
                             render={({ field: { onChange, onBlur, value } }) => (
                                 <TextInput
-                                   placeholder='pass'
+                                    placeholder='pass'
                                     onBlur={onBlur}
                                     onChangeText={onChange}
                                     value={value}
@@ -102,9 +101,9 @@ export const Loginn = ({ navigation }: any) => {
                     </View>
                 </View>
                 {/* btn_1 */}
-              
-                     <TouchableOpacity style={{ alignItems: "center" }} onPress={handleSubmit(onSubmit)}>
-                <BComponent bgCl={"#CD2027"} title={dataText.btn} color="#fff" size={17} weight={600} widthh={343} />
+
+                <TouchableOpacity style={{ alignItems: "center" }} onPress={handleSubmit(onSubmit)}>
+                    <BComponent bgCl={"#CD2027"} title={dataText.btn} color="#fff" size={17} weight={600} widthh={343} />
                 </TouchableOpacity>
 
 
@@ -120,10 +119,9 @@ export const Loginn = ({ navigation }: any) => {
                 </TouchableOpacity>
                 {/*  */}
                 <View style={{ marginTop: 14, justifyContent: "center", flexDirection: "row" }}>
-
                     <TextComponent title={dataText.title3} color="black" size={15} weight={400} />
-                    <TouchableOpacity onPress={() => navigation.navigate("Login")}><TextComponent title={" Đăng nhập"} color="blue" size={15} weight={700} /></TouchableOpacity>
-
+                    <TouchableOpacity onPress={() => navigation.navigate("Login")}><TextComponent title={" Đăng nhập"} color="blue" size={15} weight={700} />
+                    </TouchableOpacity>
                 </View>
 
             </ScrollView>
