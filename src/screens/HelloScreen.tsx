@@ -98,8 +98,11 @@ const HelloScreen = ({navigation}: any) => {
 };
 const styles = StyleSheet.create({
   Screen: {
+
     marginTop: 34,
     flex: 1,
+    justifyContent:'center'
+    
   },
   contain: {alignItems: 'center'},
 
