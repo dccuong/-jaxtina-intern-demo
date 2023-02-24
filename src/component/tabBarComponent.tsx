@@ -46,6 +46,7 @@ export const tabBarComponent = ({ state, descriptors, navigation }: any) => {
                         onPress={onPress}
                         onLongPress={onLongPress}
                         style={{ flex: 1 }}
+                        key={index}
                     >
                         {/* xcccccccc */}
                         <View style={{ alignItems: "center", margin: 12 }}>

@@ -1,25 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
-    Text,
-    View,
-    Image,
-    StyleSheet,
-    TextInput,
-    ScrollView,
-    Button,
+    Controller, useForm
+} from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import {
+    Image, ScrollView, StyleSheet, Text, TextInput, useWindowDimensions, View
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import {
-    useForm,
-    Controller,
-    SubmitErrorHandler,
-    SubmitHandler,
-} from 'react-hook-form';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import BComponent from '../component/Button';
 import TextComponent from '../component/TextCpn';
+import { globalDimension, scale } from '../scaling-utils';
+import useTheme from '../useTheme';
 
 export const Loginn = ({ navigation }: any) => {
+    const {i18n}=useTranslation()
+    const theme=useTheme()
     const {
         control,
         handleSubmit,
@@ -34,21 +29,17 @@ export const Loginn = ({ navigation }: any) => {
         console.log(data, 'Login');
         navigation.navigate('TabScreen');
     };
+    const { width } = useWindowDimensions();
+    console.log(width, "Sssssss")
+    globalDimension.widthh = width
+    useEffect(() => {
 
-    const dataText = {
-        title2: 'The Pioneer in Coaching 4 English Skills',
-        ip1: 'Họ và tên',
-        ip2: 'Email',
-        ip3: 'Số điện thoại',
-        ip4: 'Mật khẩu',
-        ip5: 'Ngày, thàng, năm, sinh',
-        btn: 'Hãy bắt đầu',
-        btn2: 'Đăng nhập bằng Facebook',
-        title3: 'Đã là người dùng Jaxtina rồi?',
-    };
+    }, [width]);
+   
     return (
-        <SafeAreaProvider style={styles.Screen}>
+        <View style={[styles.Screen,{backgroundColor:theme.colors.BACKGROUND}]}>
             <ScrollView>
+
                 <View style={{ height: 45, alignItems: 'flex-start' }}>
                     <TouchableOpacity
                         onPress={() => {
@@ -68,34 +59,36 @@ export const Loginn = ({ navigation }: any) => {
                     />
                     <TextComponent
                         mb={12}
-                        title={dataText.title2}
+                        title={"title2"}
                         size={15}
                         weight={500}
                         color={'#2E3192'}
                     />
                     {/* ///////////////////////////////////////// */}
 
-                    <View style={styles.inputt}>
-                        <Image source={require('../../assets/in2.png')} />
+                    <View style={[styles.inputt,{ width: scale(343) }]}>
+                        <Image source={require('../../assets/in2.png')} 
+                        style={styles.iconn} />
                         <Controller
                             control={control}
                             render={({ field: { onChange, onBlur, value } }) => (
                                 <TextInput
                                     placeholderTextColor={'#868E96'}
-                                    placeholder="Email"
+                                    placeholder={`${i18n.t("ip2")}`}
                                     onBlur={onBlur}
                                     onChangeText={onChange}
                                     value={value}
+                                    style={{ width: "90%" }}
                                 />
                             )}
                             name="Email"
                             rules={{ required: true }}
                         />
-                        {errors.Email && <Text>This is required.</Text>}
-                    </View>
 
-                    <View style={styles.inputt}>
-                        <Image source={require('../../assets/in5.png')} />
+                    </View>
+                    <View>{errors.Pass && <Text>This is required.</Text>}</View>
+                    <View style={[styles.inputt,{ width: scale(343) }]}>
+                        <Image source={require('../../assets/in5.png')} style={styles.iconn} />
                         <Controller
                             control={control}
                             rules={{
@@ -103,20 +96,22 @@ export const Loginn = ({ navigation }: any) => {
                             }}
                             render={({ field: { onChange, onBlur, value } }) => (
                                 <TextInput
-                                    placeholder="pass"
+                                placeholder={`${i18n.t("ip4")}`}
                                     onBlur={onBlur}
                                     onChangeText={onChange}
                                     value={value}
+                                    style={{ width: scale(343) }}
                                 />
                             )}
                             name="Pass"
                         />
-                        {errors.Pass && <Text>This is required.</Text>}
+
                     </View>
+                    <View>{errors.Pass && <Text>This is required.</Text>}</View>
                     <View
                         style={{
                             flex: 1,
-                            width: 343,
+                            width: scale(343),
                             flexDirection: 'row',
                             justifyContent: 'space-between',
                             marginTop: 12,
@@ -138,11 +133,11 @@ export const Loginn = ({ navigation }: any) => {
                     onPress={handleSubmit(onSubmit)}>
                     <BComponent
                         bgCl={'#CD2027'}
-                        title={dataText.btn}
+                        title={"btn"}
                         color="#fff"
                         size={17}
                         weight={600}
-                        widthh={343}
+                        widthh={scale(343)}
                     />
                 </TouchableOpacity>
 
@@ -153,11 +148,12 @@ export const Loginn = ({ navigation }: any) => {
                         flexDirection: 'row',
                         justifyContent: 'center',
                         alignItems: 'center',
+                        marginTop: 93
                     }}>
                     <View
                         style={{
                             borderWidth: 1,
-                            width: 122,
+                            width: scale(112),
                             borderColor: '#C5CEE0',
                             marginRight: 8,
                         }}></View>
@@ -170,11 +166,12 @@ export const Loginn = ({ navigation }: any) => {
                     <View
                         style={{
                             borderWidth: 1,
-                            width: 122,
+                            width: scale(112),
                             borderColor: '#C5CEE0',
                             marginLeft: 8,
                         }}></View>
                 </View>
+
                 {/* btn_2 */}
                 <TouchableOpacity
                     style={{ alignItems: 'center' }}
@@ -183,11 +180,11 @@ export const Loginn = ({ navigation }: any) => {
                     }}>
                     <BComponent
                         bgCl={'#1877F2'}
-                        title={dataText.btn2}
+                        title={"btn2"}
                         color="#fff"
                         size={17}
                         weight={600}
-                        widthh={343}
+                        widthh={scale(343)}
                     />
                 </TouchableOpacity>
                 {/*  */}
@@ -198,7 +195,7 @@ export const Loginn = ({ navigation }: any) => {
                         flexDirection: 'row',
                     }}>
                     <TextComponent
-                        title={dataText.title3}
+                        title={"title3"}
                         color="black"
                         size={15}
                         weight={400}
@@ -213,7 +210,7 @@ export const Loginn = ({ navigation }: any) => {
                     </TouchableOpacity>
                 </View>
             </ScrollView>
-        </SafeAreaProvider>
+        </View>
     );
 };
 const styles = StyleSheet.create({
@@ -222,18 +219,20 @@ const styles = StyleSheet.create({
         marginTop: 14,
         marginLeft: 16,
         marginRight: 16,
+
     },
     inputt: {
         backgroundColor: '#fff',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingLeft: 10,
-        paddingRight: 10,
-        width: 343,
         borderRadius: 15,
         marginTop: 16,
         color: 'black',
         flex: 1,
+    },
+    iconn: {
+        marginRight: 6,
+        marginLeft: 16,
     },
 });

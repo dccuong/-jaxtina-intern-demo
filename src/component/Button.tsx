@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import TextComponent from './TextCpn'
 type Props = {
 title?:string,
 color?:any,
@@ -23,7 +24,7 @@ const BComponent = (props: Props,{navigation}:any) => {
         style={{width:props.widthh,marginBottom:props.mb, marginTop:props.mt,backgroundColor:props.bgCl,height:48, margin:10, borderRadius:12,alignItems:"center", justifyContent:'center'}}
       
         >
-            <Text style={{fontSize:props.size,color:props.color,fontWeight:props.weight,paddingBottom:props.pb,paddingTop:props.pt}}>{props.title}</Text>
+          <TextComponent title={`${props.title}`} weight={props.weight} color={props.color} mt={props.mt} mb={props.mb}  />
         </View>
 
     )
